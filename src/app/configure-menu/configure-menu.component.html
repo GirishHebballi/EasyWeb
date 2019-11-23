@@ -1,0 +1,212 @@
+<div class="example-container" style="padding-left: 1rem;">
+  <form [formGroup]="configMenuForm" class="example-form">
+    <mat-card style="width: 100% ;">
+      <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd; ">
+        <mat-grid-list cols="6" guttersize="10px" rowHeight="65px">
+          <mat-grid-tile colspan="6">
+            <h3>Configure Menus</h3>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <div class="example-full-width">
+              <h6>Menu Name:</h6>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <mat-form-field class="example-full-width">
+              <mat-label>{{ menu }}</mat-label>
+              <select matNativeControl id="mySelectId" formControlName="menu">
+                <option *ngFor="let option of mainMenuList" value="option">{{
+                  option
+                }}</option>
+              </select>
+              <mat-error *ngIf="validate(menu)">
+                {{ errorMessage.newMenu }}
+              </mat-error>
+              <mat-hint
+                >Select Main Menu, If you want new menu then use button to add
+                new on the right</mat-hint
+              >
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <mat-form-field class="example-full-width">
+              <div *ngIf="mainMenuError">
+                <small style="color: red">{{ errorMessage.newMenu }}</small>
+              </div>
+              <input
+                matInput
+                placeholder="Enter New MenuName"
+                formControlName="newMenu"
+              />
+
+              <mat-hint
+                >Add New Menu item and Click on "Add New Menu" button to
+                add</mat-hint
+              >
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <div class="example-full-width">
+              <button mat-stroked-button color="primary" (click)="addNewMenu()">
+                Add New Menu</button
+              >&nbsp;&nbsp;
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      <!-- </mat-card-content>
+    </mat-card>
+
+    <mat-card style="width: 100% ;">
+      <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd; "> -->
+        <mat-grid-list cols="6" guttersize="10px" rowHeight="65px">
+          <mat-grid-tile colspan="5">
+            <h5>Sub Menus</h5>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+                <div class="example-full-width">
+                  <button mat-stroked-button color="primary" (click)="addSubMenus()">
+                        <i class="material-icons">
+                                add
+                                </i></button
+                  >&nbsp;&nbsp;
+                  <button mat-stroked-button color="warn" (click)="removeSubMenus()">
+                        <i class="material-icons">
+                                remove
+                                </i></button
+                  >&nbsp;&nbsp;
+                </div>
+              </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="6" guttersize="10px" rowHeight="65px">
+
+
+          <div
+            formArrayName="subMenus"
+            *ngFor="let subMenu of subMenus.controls; let i = index"
+          >
+            <div [formGroupName]="i">
+                    <mat-grid-tile colspan="1"> </mat-grid-tile>
+
+                    <mat-grid-tile colspan="1">
+                            <div class="example-full-width">
+                              <h6>Sub Menus {{i}}</h6>
+                            </div>
+                          </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    id="menuLabel + {{ i }}"
+                    placeholder="Sub Menu Label"
+                    formControlName="menuLabel"
+                  />
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    id="menuLink + {{ i }}"
+                    placeholder="Menu Table Name"
+                    formControlName="menuLink"
+                  />
+                </mat-form-field>
+              </mat-grid-tile>
+
+              <mat-grid-tile colspan="1">
+                <mat-form-field class="example-full-width">
+                  <mat-label>{{ menu }}</mat-label>
+                  <select
+                    matNativeControl
+                    id="hasChildMenus + {{ i }}"
+                    formControlName="hasChildMenus"
+                    placeholder="Has Child Menus"
+                  >
+                    <option
+                      *ngFor="let option of [true, false]"
+                      value="option"
+                      >{{ option }}</option
+                    >
+                  </select>
+                  <mat-hint
+                  >Add Child Menus Button will be enabled only if this value is TRUE </mat-hint>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                    <div class="example-full-width">
+                            
+                      <button mat-stroked-button color="primary" (click)="addChildMenus(i)" >
+                            <i class="material-icons">
+                                    add
+                                    </i></button
+                      >&nbsp;&nbsp;
+                      <button mat-stroked-button color="warn" (click)="removeChildMenus(i)" >
+                            <i class="material-icons">
+                                    remove
+                                    </i></button
+                          >&nbsp;&nbsp;
+                    </div>
+                  </mat-grid-tile>
+
+
+              <div style="background-color: rgb(232, 235, 228)"
+              formArrayName="childMenus"
+              *ngFor="let childMenu of subMenu.controls.childMenus.controls;let ind = index">
+              <div [formGroupName]="ind">
+                   <mat-grid-tile colspan="1">
+
+                   </mat-grid-tile>
+
+                    <mat-grid-tile colspan="1">
+
+                        </mat-grid-tile>
+                        <mat-grid-tile colspan="1">
+                                <h6>Child Menus {{ind}}</h6>
+                            </mat-grid-tile>
+                    <mat-grid-tile colspan="1">
+                            <mat-form-field class="example-full-width">
+                              <input
+                                matInput
+                                id="childLink + {{ i }}"
+                                placeholder="Child Label"
+                                formControlName="childLabel"
+                              />
+                            </mat-form-field>
+                          </mat-grid-tile>
+                          <mat-grid-tile colspan="1">
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    id="childLink + {{ i }}"
+                                    placeholder="child Table Name"
+                                    formControlName="childLink"
+                                  />
+                                </mat-form-field>
+                              </mat-grid-tile>
+                              <mat-grid-tile colspan="1">
+
+                                </mat-grid-tile>
+
+                  </div>
+                  </div>
+
+            </div>
+          </div>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+    <mat-card style="width: 100% ;">
+            <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd;">
+              <mat-grid-list cols="2" guttersize="10px" rowHeight="65px">
+                <mat-grid-tile colspan="2">
+                  <button mat-stroked-button color="primary" >
+                    Add
+                  </button>
+                  &nbsp;&nbsp;
+                  <button mat-stroked-button color="primary">Edit</button>&nbsp;&nbsp;
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-card-content>
+          </mat-card>
+  </form>
+</div>

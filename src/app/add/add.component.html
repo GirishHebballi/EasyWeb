@@ -1,0 +1,87 @@
+<nav class="navbar navbar-info bg-info" style='box-shadow: 0px 7px 5px #dfdfdd;'>
+        <h2 >{{pageDetails.pageTitle}}</h2>
+</nav>
+<div class="container-fluid p-3">
+
+  <div class="col-md-8" style='box-shadow: 0px 7px 5px #b0b2b6;'>
+    <form class='p-4'>
+      <fieldset class='p-2' *ngFor="let pageGroup of pageDetails.groups" >
+        <legend >
+          <h5><b >{{pageGroup.groupName}}</b></h5>
+        </legend>
+
+        <div class="form-group">
+          <div class="row" *ngFor='let pageFields of pageGroup.fields' [ngSwitch]=pageFields?.type>
+            <div
+              class="col-md-2"
+              style="text-align:right;vertical-align:middle"
+            >
+              <label>
+                <h6>
+                  <b> {{pageFields.label}} <span>*</span></b>
+                </h6>
+              </label>
+            </div>
+
+            <!-- SWITCH CASE TO SET DROPDOWN FIELD-->
+            <div class="col-md-4 mx-1 p-1" *ngSwitchCase="'DROPDOWN'">
+              <select
+                class="custom-select"
+                id="inputGroupSelect03"
+                aria-label="Example select with button addon"
+              >
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+
+            <!-- SWITCH CASE TO SET TEXT FIELD-->
+
+            <div class="col-md-4 mx-1 p-1" *ngSwitchCase="'TEXT'">
+                    <small
+                      ><b>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Laptop Size"
+                          style='box-shadow: 0px 7px 5px #dfdfdd;'
+                        /> </b
+                    ></small>
+                  </div>
+
+            <!-- SWITCH CASE TO SET PASSWORD FIELD-->
+
+            <div class="col-md-4 mx-1 p-1" *ngSwitchCase="'PASSWORD'">
+                    <small
+                      ><b>
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Laptop Size"
+                        /> </b
+                    ></small>
+                  </div>
+
+            <!-- SWITCH CASE TO SET CHECKBOX FIELD-->
+
+            <div class="col-md-4 mx-1 p-1" *ngSwitchCase="'CHECKBOX'">
+                    <input type="checkbox" aria-label="Checkbox for following text input">
+
+                  </div>
+
+          </div>
+        </div>
+      </fieldset>
+     
+     
+    </form>
+
+    <button type="button" style='box-shadow: 0px 7px 5px #dfdfdd;' class="btn btn-info" [routerLink]="['/addPage']"
+    >
+    Add New </button>
+    <br>
+    <br>
+  </div>
+</div>

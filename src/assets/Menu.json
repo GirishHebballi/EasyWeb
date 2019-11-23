@@ -1,0 +1,326 @@
+{      menu: 'System',
+      items: [
+        {
+          itemLabel: 'Server',
+          itemAction: 'click',
+          functionOrLink: 'ListProcessNode',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Cisco Unified CM',
+          itemAction: 'click',
+          functionOrLink: 'ListCallManager',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Cisco Unified CM Group',
+          itemAction: 'click',
+          functionOrLink: 'ListCallManagerGroup',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Presence Redundancy Groups',
+          itemAction: 'click',
+          functionOrLink: 'ListPresenceRedundancyGroup',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Phone NTP Reference',
+          itemAction: 'click',
+          functionOrLink: 'ListPhoneNtp',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Date/Time Group',
+          itemAction: 'click',
+          functionOrLink: 'ListDateTimeGroup',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'BLF Presence Group',
+          itemAction: 'click',
+          functionOrLink: 'ListPresenceGroup',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Region Information',
+          itemAction: 'click',
+          functionOrLink: 'ListSipRoutePattern',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'Audio Codec Preference List',
+              itemAction: 'click',
+              functionOrLink: 'ListAudioCodecPreferenceList',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'Region',
+              itemAction: 'click',
+              functionOrLink: 'ListRegion',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'Device Pool',
+          itemAction: 'click',
+          functionOrLink: 'ListDevicePool',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Device Mobility',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'Device Mobility Group',
+              itemAction: 'click',
+              functionOrLink: 'ListDeviceMobilityGroup',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'Device Mobility Info',
+              itemAction: 'click',
+              functionOrLink: 'ListDeviceMobility',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'DHCP',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'DHCP Server',
+              itemAction: 'click',
+              functionOrLink: 'ListDhcpServer',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'DHCP Subnet',
+              itemAction: 'click',
+              functionOrLink: 'ListDhcpSubnet',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'LDAP',
+          itemAction: 'click',
+          functionOrLink: 'ListSipRoutePattern',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'LDAP System',
+              itemAction: 'click',
+              functionOrLink: 'ListSipRoutePattern',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'LDAP Directory',
+              itemAction: 'click',
+              functionOrLink: 'ListLdapDirectory',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'LDAP Authentication',
+              itemAction: 'click',
+              functionOrLink: '',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'LDAP Custom Filter',
+              itemAction: 'click',
+              functionOrLink: 'ListLdapFilter',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'LDAP Search',
+              itemAction: 'click',
+              functionOrLink: 'ListLdapSearch',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'SAML Single Sign-On',
+          itemAction: 'click',
+          functionOrLink: 'ListSipRoutePattern',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Cross-Origin Resource Sharing (CORS)',
+          itemAction: 'click',
+          functionOrLink: 'ListSipRoutePattern',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Location',
+          itemAction: 'click',
+          functionOrLink: 'ListLocation',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'Location Bandwidth Manager Group',
+              itemAction: 'click',
+              functionOrLink: 'ListLbmGroup',
+              itemHasChild: false
+            },
+            {
+              itemLabel:
+                'Location Bandwidth Manager(LBM) Intercluster Replication Group',
+              itemAction: 'click',
+              functionOrLink: 'ListLbmHubGroup',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'MLPP',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'Domain',
+              itemAction: 'click',
+              functionOrLink: 'ListMlppDomain',
+              itemHasChild: true,
+              children: [
+                {
+                  itemLabel: 'MLPP Domain',
+                  itemAction: 'click',
+                  functionOrLink: 'ListMlppDomain',
+                  itemHasChild: true
+                }
+              ]
+            },
+            {
+              itemLabel: 'Namespace',
+              itemAction: 'click',
+              functionOrLink: 'ListRegion',
+              itemHasChild: true,
+              children: [
+                {
+                  itemLabel: 'Resource Priority Namespace Network Domain',
+                  itemAction: 'click',
+                  functionOrLink: 'ListResourcePriorityNamespace',
+                  itemHasChild: true
+                },
+                {
+                  itemLabel: 'Resource Priority Namespace List',
+                  itemAction: 'click',
+                  functionOrLink: 'ListResourcePriorityNamespaceList',
+                  itemHasChild: true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          itemLabel: 'Physical Location',
+          itemAction: 'click',
+          functionOrLink: 'ListPhysicalLocation',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'SRST',
+          itemAction: 'click',
+          functionOrLink: 'ListSrst',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Enterprise Parameters',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Enterprise Phone Configuration',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Service Parameters',
+          itemAction: 'click',
+          functionOrLink: 'ListServiceParameter',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Security',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'Certificate',
+              itemAction: 'click',
+              functionOrLink: '',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'Phone Security Profile',
+              itemAction: 'click',
+              functionOrLink: 'ListPhoneSecurityProfile',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'SIP Trunk Security Profile',
+              itemAction: 'click',
+              functionOrLink: 'ListSipTrunkSecurityProfile',
+              itemHasChild: false
+            },
+            {
+              itemLabel: 'CUMA Server Security Profile',
+              itemAction: 'click',
+              functionOrLink: 'ListCumaServerSecurityProfile',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'Application Server',
+          itemAction: 'click',
+          functionOrLink: 'ListApplicationServer',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Licensing',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: true,
+          children: [
+            {
+              itemLabel: 'License Usage Report',
+              itemAction: 'click',
+              functionOrLink: 'ListLicensedUser',
+              itemHasChild: false
+            }
+          ]
+        },
+        {
+          itemLabel: 'Geolocation Configuration',
+          itemAction: 'click',
+          functionOrLink: 'ListGeoLocation',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'Geolocation Filter',
+          itemAction: 'click',
+          functionOrLink: 'ListGeoLocationFilter',
+          itemHasChild: false
+        },
+        {
+          itemLabel: 'E911 Messages',
+          itemAction: 'click',
+          functionOrLink: '',
+          itemHasChild: false
+        }
+      ]
+    }
+}

@@ -1,0 +1,325 @@
+<div class="example-container" style="padding-left: 1rem">
+  <form [formGroup]="ezFormGroup" class="example-form">
+    <mat-card style="width: 100% ;">
+      <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd;">
+        <mat-grid-list cols="2" guttersize="10px" rowHeight="65px">
+          <mat-grid-tile colspan="2">
+            <h4>{{ pageDetails.pageTitle }}</h4>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+    <mat-card style="width: 100% ;" *ngFor="let group of pageDetails.groups">
+      <mat-card-content
+        style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd;padding-bottom: 2rem"
+      >
+        <mat-grid-list cols="2" guttersize="10px" rowHeight="65px">
+          <mat-grid-tile colspan="1">
+            <div class="example-full-width">
+              <h5>{{ group.groupName }}</h5>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+          <div *ngFor="let field of group.fields; let indx = index">
+            <!-- STARTING FOR TILE 1-->
+
+            <div>
+              <mat-grid-tile colspan="1" *ngIf="field.type === 'TEXT'">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    placeholder="{{ field.label }}"
+                    [formControlName]="field.dbName"
+                  />
+                  <mat-error *ngIf="validate(field.dbName)">
+                    {{ errorMessage[field?.dbName] }}
+                  </mat-error>
+                  <mat-hint>{{ field?.hint }}</mat-hint>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1" *ngIf="field.type === 'SELECT'">
+                <mat-form-field class="example-full-width">
+                  <mat-label>{{ field.label }}</mat-label>
+                  <select
+                    matNativeControl
+                    id="mySelectId"
+                    [formControlName]="field.dbName"
+                  >
+                    <option
+                      *ngFor="
+                        let option of [
+                          'Lenovo',
+                          'HP',
+                          'Dell',
+                          'Sony',
+                          'Toshiba',
+                          'Apple'
+                        ]
+                      "
+                      value="option"
+                      >{{ option }}</option
+                    >
+                  </select>
+                  <mat-error *ngIf="validate(field.dbName)">
+                    {{ errorMessage[field?.dbName] }}
+                  </mat-error>
+                  <mat-hint>{{ field?.hint }}</mat-hint>
+                </mat-form-field>
+              </mat-grid-tile>
+
+              <mat-grid-tile
+                colspan="1"
+                *ngIf="field.type === 'SELECT_MULTIPLE'"
+              >
+                <mat-form-field class="example-full-width">
+                  <mat-label>{{ field.label }}</mat-label>
+                  <mat-select
+                    [formControl]="toppings"
+                    multiple
+                    [formControlName]="field.dbName"
+                  >
+                    <mat-option
+                      *ngFor="let topping of toppingList"
+                      [value]="topping"
+                      >{{ topping }}</mat-option
+                    >
+                  </mat-select>
+                  <mat-error *ngIf="validate(field.dbName)">
+                    {{ errorMessage[field?.dbName] }}
+                  </mat-error>
+                  <mat-hint>{{ field?.hint }}</mat-hint>
+                </mat-form-field>
+              </mat-grid-tile>
+
+              <mat-grid-tile colspan="1" *ngIf="field.type === 'DATE'">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    [formControlName]="field.dbName"
+                    placeholder="{{ field.label }}"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="validate(field.dbName)">
+                    {{ errorMessage[field?.dbName] }}
+                  </mat-error>
+                  <mat-hint>{{ field?.hint }}</mat-hint>
+                </mat-form-field>
+              </mat-grid-tile>
+
+              <mat-grid-tile colspan="1" *ngIf="field.type === 'TOGGLE'">
+                <div class="example-full-width">
+                  <section class="example-section">
+                    <mat-slide-toggle [formControlName]="field.dbName">{{
+                      field.label
+                    }}</mat-slide-toggle>
+                    <mat-error *ngIf="validate(field.dbName)">
+                      {{ errorMessage[field?.dbName] }}
+                    </mat-error>
+                    <mat-hint>&nbsp;&nbsp; Hint :{{ field?.hint }}</mat-hint>
+                  </section>
+                </div>
+              </mat-grid-tile>
+
+              <mat-grid-tile colspan="1" *ngIf="field.type === 'CHECKBOX'">
+                <div class="example-full-width">
+                  <section class="example-section">
+                    <mat-checkbox [formControlName]="field.dbName">
+                      {{ field.label }}</mat-checkbox
+                    >
+                    <mat-error *ngIf="validate(field.dbName)">
+                      {{ errorMessage[field?.dbName] }}
+                    </mat-error>
+                    <mat-hint>{{ field?.hint }}</mat-hint>
+                  </section>
+                </div>
+              </mat-grid-tile>
+
+              <mat-grid-tile
+                colspan="1"
+                style="align-self: flex-start!important"
+                *ngIf="field.type === 'RADIO'"
+              >
+                <div class="example-full-width">
+                  <label id="example-radio-group-label"
+                    >{{ field.label }} &nbsp;&nbsp;</label
+                  ><br />
+                  <mat-radio-group
+                    [formControlName]="field.dbName"
+                    aria-labelledby="example-radio-group-label"
+                  >
+                    <mat-radio-button
+                      class="example-radio-button"
+                      *ngFor="
+                        let option of [
+                          'Green Color',
+                          'White Color',
+                          'Orange Color'
+                        ]
+                      "
+                      [value]="option"
+                    >
+                      {{ option }} &nbsp;&nbsp;
+                    </mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error *ngIf="validate(field.dbName)">
+                    {{ errorMessage[field?.dbName] }}
+                  </mat-error>
+                  <mat-hint>{{ field?.hint }}</mat-hint>
+                </div>
+              </mat-grid-tile>
+
+              <mat-grid-tile colspan="1" *ngIf="field.type === 'TEXTAREA'">
+                <mat-form-field class="example-full-width">
+                  <textarea
+                    matInput
+                    matAutosizeMaxRows="10"
+                    [formControlName]="field.dbName"
+                    placeholder="{{ field.label }}"
+                  ></textarea>
+                  <mat-error *ngIf="validate(field.dbName)">
+                    {{ errorMessage[field?.dbName] }}
+                  </mat-error>
+                  <mat-hint>{{ field?.hint }}</mat-hint>
+                </mat-form-field>
+              </mat-grid-tile>
+            </div>
+
+            <!-- ENDING FOR TILE 1-->
+            <div *ngIf="!pageDetails.fieldsInBothTiles && indx % 2 == 0">
+              <mat-grid-tile colspan="1"></mat-grid-tile>
+            </div>
+            <!-- STARTING FOR TILE 2-->
+
+            <!-- ENDING FOR TILE 2-->
+            <div *ngIf="!pageDetails.fieldsInBothTiles && indx % 2 == 1">
+              <mat-grid-tile colspan="1"></mat-grid-tile>
+            </div>
+          </div>
+
+          <!--
+          <mat-grid-tile colspan="1">
+            <mat-form-field class="example-full-width">
+              <mat-label>Select your car (required)</mat-label>
+              <select matNativeControl id="mySelectId">
+                <option value="" disabled selected></option>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+              <mat-hint>You can pick up your favorite car here</mat-hint>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+
+          <mat-grid-tile colspan="1">
+            <mat-form-field class="example-full-width">
+              <mat-label>Toppings</mat-label>
+              <mat-select [formControl]="toppings" multiple>
+                <mat-option
+                  *ngFor="let topping of toppingList"
+                  [value]="topping"
+                  >{{ topping }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+
+          <mat-grid-tile colspan="1">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Choose a date"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+
+          <mat-grid-tile colspan="1">
+            <div class="example-full-width">
+              <section class="example-section">
+                <mat-slide-toggle>Slide me!</mat-slide-toggle>
+              </section>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <div class="example-full-width">
+              <section class="example-section">
+                <mat-checkbox>Check me!</mat-checkbox>
+              </section>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+          <mat-grid-tile colspan="1" style="align-self: flex-start!important">
+            <mat-radio-group
+              aria-label="Select an option"
+              class="example-full-width"
+            >
+              <mat-radio-button value="1">Option 1</mat-radio-button>
+              <mat-radio-button value="2">Option 2</mat-radio-button>
+            </mat-radio-group>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+
+          <mat-grid-tile colspan="1">
+            <mat-form-field class="example-full-width">
+              <textarea
+                matInput
+                matAutosizeMaxRows="10"
+                placeholder="My Personal Accomplishments"
+              ></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <div class="example-full-width">
+              <span matPrefix>Upload File &nbsp;&nbsp;</span>
+              <input
+                type="file"
+                placeholder="Telephone"
+                formControlName="fourCtrl"
+              />
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1"> </mat-grid-tile> -->
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card style="width: 100% ;">
+      <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd;">
+        <mat-grid-list cols="2" guttersize="10px" rowHeight="65px">
+          <mat-grid-tile colspan="2">
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="printFormCtrl()"
+            >
+              Add
+            </button>
+            &nbsp;&nbsp;
+            <button mat-stroked-button color="primary">Edit</button>&nbsp;&nbsp;
+            <button mat-stroked-button color="warn">Delete</button>&nbsp;&nbsp;
+            <button mat-stroked-button color="warn" (click)="ToogleDisplay()">
+              Two Column Display</button
+            >&nbsp;&nbsp;
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

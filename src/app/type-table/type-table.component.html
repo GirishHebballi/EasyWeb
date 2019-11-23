@@ -1,0 +1,96 @@
+<form [formGroup]="typeFormGroup" class="example-form">
+  <div class="example-container" style="padding-left: 1rem">
+    <mat-card style="width: 100% ;">
+      <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd;">
+        <mat-grid-list cols="2" guttersize="10px" rowHeight="65px">
+          <mat-grid-tile colspan="2">
+            <h4>Add TYPES</h4>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card style="width: 100% ;">
+      <mat-card-content style="width: 100% ;box-shadow: 0px 7px 5px #dfdfdd;">
+        <mat-grid-list cols="8" guttersize="10px" rowHeight="250px">
+          <mat-grid-tile colspan="2">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Type Name"
+                formControlName="typeName"
+              />
+              <mat-error *ngIf="validate('typeName')">
+                {{ errorMsg }}
+              </mat-error>
+              <mat-hint>Name Should always start with TYPE_ </mat-hint>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <mat-form-field class="example-full-width">
+              <textarea
+                rows="5"
+                matInput
+                formControlName="typeValues"
+                placeholder="Values"
+              ></textarea>
+
+              <mat-hint
+                >Values Should be seperated by comma, Make sure you dont add
+                values with comma</mat-hint
+              >
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2">
+            <button
+              class="example-full-width"
+              mat-stroked-button
+              color="primary"
+            >
+              Add Type</button
+            >&nbsp;&nbsp;
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</form>
+
+<div class="example-full-width">
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row }}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+        <td mat-cell *matCellDef="let row">
+        <button mat-stroked-button color="primary"><i class="material-icons" (click)="editType(row)">edit</i>
+            </button>&nbsp;&nbsp;
+
+            <button mat-stroked-button color="warn"><i class="material-icons" (click)="deleteType(row)">delete</i>
+            </button>    
+     
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

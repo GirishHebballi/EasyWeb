@@ -1,0 +1,41 @@
+{
+    Laptops : {
+        groups : [
+            {
+                'Laptop Details': [
+                    {
+                        'Name' : {
+
+                        }
+                    } ,
+                    {
+                        'Model' : {
+
+                        }
+                    }
+                ]
+            },
+            {
+                'Laptop Configuration' : [
+                    {
+                        'CPU': {
+
+                        }
+                    },
+                    {
+                        'Memory' : {
+
+                        }
+                    },
+                    {
+                        'Hard Disk' : {
+                            
+                        }
+                    }
+
+                ]
+            }
+        ]
+    }
+
+}

@@ -1,0 +1,137 @@
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Doctor Personal Details</ng-template>
+            <mat-grid-list cols="4" guttersize="1px" rowHeight="75px">
+              <mat-grid-tile colspan="1">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="First name"
+                    formControlName="firstCtrl"
+                    required
+                  />
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Last name"
+                    formControlName="lastCtrl"
+                    required
+                  />
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="2">
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Email/UserId"
+                    formControlName="emailCtrl"
+                    required
+                  />
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Phone Number"
+                    formControlName="phoneCtrl"
+                    required
+                  />
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="2">
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="Password"
+                      formControlName="passwordCtrl"
+                      required
+                    />
+                  </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <mat-grid-list cols="4" guttersize="1px" rowHeight="75">
+              <mat-grid-tile colspan="4"> </mat-grid-tile>
+            </mat-grid-list>
+            <div>
+              <button
+                mat-button
+                matStepperNext
+               
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Academic Details</ng-template>
+      
+            <mat-grid-list cols="4" guttersize="1px" rowHeight="75px">
+                <mat-grid-tile colspan="1">
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Degree"
+                          formControlName="degreeCtrl"
+                          
+                        />
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="College Name"
+                          formControlName="collegeCtrl"
+                          
+                        />
+                      </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+      
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Professional Details</ng-template>
+            <mat-grid-list cols="4" guttersize="1px" rowHeight="75px">
+                <mat-grid-tile colspan="2" rowspan='5'>
+      
+                    <mat-form-field style='width: 600px;'>
+                        <textarea matInput matAutosizeMaxRows='5' placeholder="My Personal Accomplishments" formControlName="accomplishmentCtrl"></textarea>
+                </mat-form-field>
+                </mat-grid-tile>
+      
+            </mat-grid-list>
+      
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+      

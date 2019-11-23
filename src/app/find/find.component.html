@@ -1,0 +1,110 @@
+<div class="container-fluid">
+
+<div class="col-md-12">
+        <br>
+        <div class="row col-md-6">
+            <button type="button" class="btn btn-info" style="box-shadow: 0px 7px 5px #dfdfdd">
+            <i style='font-style: normal;' class="material-icons">
+              add
+            </i></button> &nbsp;
+          <button type="button" class="btn btn-info"  style="box-shadow: 0px 7px 5px #dfdfdd">
+            <i style='font-style: normal;' class="material-icons">
+              select_all
+            </i> </button> &nbsp;
+          <button type="button" class="btn btn-info"  style="box-shadow: 0px 7px 5px #dfdfdd">
+            <i style='font-style: normal;' class="material-icons">
+              clear_all
+            </i> </button>&nbsp;
+          <button type="button" class="btn btn-info" 
+            style="box-shadow: 0px 7px 5px #dfdfdd">
+            <i style='font-style: normal;' class="material-icons">
+              delete_forever
+            </i></button>
+        </div>
+        <br>
+        <div class="col-md-10" style='box-shadow: 0px 7px 5px #dfdfdd;'>
+          <legend><small>Total Count : </small></legend>
+      
+          <!--div class="alert alert-light alert-dismissible shadow-sm" role="alert">
+            
+      
+          </div-->
+      
+        </div>
+        <div class="row col-md-10">&nbsp;</div>
+      
+        <div class="row col-md-10">
+          <div class="col-md-4">
+              <span> <h4>Find Assets</h4> </span>
+            <!--button type="button" class="btn btn-info" name='findListLabel' id='findListLabel' style="box-shadow: 0px 7px 5px #dfdfdd">
+              Find 
+            </button-->
+          </div>
+          <div class="col-md-2">
+            <input type="text" id="pcp-description" class="form-control shadow" aria-label="Sizing example input" 
+              aria-describedby="inputGroup-sizing-default" name="name" style='box-shadow: 0px 7px 5px #dfdfdd; border-left: 15px;border-radius:.70rem!important;'>
+          </div>
+          <div class="col-md-2">
+            <!--button type="button" class="btn btn-md btn-dark text-white shadow" (click)='loadData()'>
+              Find </button-->
+          </div>
+        </div>
+        <br>
+        <div class="row col-md-10">&nbsp;</div>
+      
+        <div class="row col-md-10">
+          <!--div class="docs-example docs-example--spacing" *ngIf='this.loadSpinner'>
+            <i class="cui-spinner cui-spinner--blue"></i>
+          </div-->
+          <table class="table shadow" style='box-shadow: 0px 7px 5px #dfdfdd;'>
+            <thead class="thead-light">
+              <tr>
+                <th scope="col"><input type="checkbox" aria-label="Checkbox for following text input" ></th>
+                <th scope="col" *ngFor="let displayFields of findListFields"><small class='font-weight-bold'>{{displayFields}}</small></th>
+                <th scope="col"><small>Copy</small></th>
+              </tr>
+            </thead>
+            <!--tbody *ngIf='!this.loadSpinner'>
+              <tr *ngFor="let data of returnData | findListSearch: searchText">
+                <th scope="col"><input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="data.selected"
+                    #returnData.selected="ngModel"></th>
+                <td *ngFor="let tag of findList.axlReturnTags; let i = index;">
+                  <div *ngIf='i < 1; else elseBlock'>
+                    <small><a (click)="doNewGet(data['@attributes']['uuid'],'Update');">{{data[tag.axlValue]}}</a></small>
+                  </div>
+                  <ng-template #elseBlock><small>{{data[tag.axlValue]}}</small>
+                  </ng-template>
+                </td>
+                <td scope="col"><i style='font-style: normal;' class="material-icons" (click)="copyAddData(data['@attributes']['uuid'])">file_copy</i></td>
+      
+              </tr>
+      
+            </tbody-->
+          </table>
+        </div>
+      
+        <br>
+        <div class="row col-md-6">
+          <button type="button" style='box-shadow: 0px 7px 5px #dfdfdd;' class="btn btn-info" [routerLink]="['/addPage']"
+            >
+            Add New </button> &nbsp;
+          <button type="button" style='box-shadow: 0px 7px 5px #dfdfdd;' class="btn btn-info"
+            >
+            Select All </button> &nbsp;
+          <button type="button" style='box-shadow: 0px 7px 5px #dfdfdd;' class="btn btn-info"
+            >
+            Clear All </button>&nbsp;
+          <button type="button" style='box-shadow: 0px 7px 5px #dfdfdd;' class="btn btn-info"
+            >
+            Delete Selected </button>
+        </div>
+      
+        <div class="small-8 columns alert alert-warning alert-dismissible shadow-sm" role="alert"
+          [style.visibility]="status.successfulRequest ? 'visible' : 'hidden'">
+          <strong>{{status.success}}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark p-0 text-font">
+        &nbsp;&nbsp;<a class="navbar-brand" href="#">My Tool</a>
+
+</nav>
+<style>
+        .navbar-nav li:hover>ul.dropdown-menu {
+          display: block;
+        }
+    
+        .dropdown-submenu {
+          position: relative;
+        }
+    
+        .dropdown-submenu>.dropdown-menu {
+          top: 0;
+          /*left:-100%;*/
+          left: 10rem;
+          /* 10rem is the min-width of dropdown-menu */
+          margin-top: -6px;
+        }
+    
+        /* rotate caret on hover */
+        .dropdown-menu>div>li>a:hover:after {
+          text-decoration: underline;
+          transform: rotate(-90deg);
+        }
+        #menusearch {
+          height: 50px!important;
+          margin-top:.7rem!important;
+          border-radius:.75rem!important;
+          padding: .125rem .75rem!important;
+          line-height:1;
+        }
+      </style>
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark p-0">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Administration
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="['/addPage']"><small>Add Page</small></a>
+                <a class="dropdown-item" href="#"><small>Add Users</small></a>
+                <a class="dropdown-item" href="#"><small>Add Roles</small></a>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav" *ngFor="let menus of menuProps">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="http://example.com" id="navbarDropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{menus.menu}}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                    <div *ngFor="let items of menus.items">
+                      <li><a class="dropdown-item" *ngIf="items.itemHasChild === false" (click)='load(items.functionOrLink)'><small>{{items.itemLabel}}</small>
+                        </a></li>
+        
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" *ngIf="items.itemHasChild === true"><small>{{items.itemLabel}}</small></a>
+                        <ul class="dropdown-menu">
+                          <div *ngFor="let childItems of items.children">
+                          <li><a class="dropdown-item"  (click)='load(childItems.functionOrLink)'  *ngIf="childItems.itemHasChild === false"><small>{{childItems.itemLabel}}</small></a></li>
+                          <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" *ngIf="childItems.itemHasChild === true"><small>{{childItems.itemLabel}}</small></a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" *ngFor="let grandChild of childItems.children" (click)='load(grandChild.functionOrLink)'><small>{{grandChild.itemLabel}}</small></a></li>
+                            </ul>
+                          </li>
+                        </div>
+                        </ul>
+                      </li>
+                      
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+        
+
+        </div>
+</nav>
