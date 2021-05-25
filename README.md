@@ -1,6 +1,9 @@
 # EasyWeb
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.1.
+This is a automatic UI Form generating application.
+This UI Application can generate as many Menus and pages as admin wants.
+This is just UI part of the code. Backend code is in java spring boot, check EasyWebApis repo for that
 
 ## Development server
 
